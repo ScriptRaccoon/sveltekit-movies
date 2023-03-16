@@ -7,6 +7,14 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	type movie = {
+		id: number;
+		name: string;
+		year: number;
+		url: string;
+		description: string;
+	};
 }
 
 export {};
