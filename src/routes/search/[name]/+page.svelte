@@ -17,7 +17,7 @@
 <h1>Search results for: {name}</h1>
 
 <ol>
-	{#each movies as movie (movie.id)}
+	{#each movies as movie}
 		<li>
 			<Movie {movie} />
 		</li>

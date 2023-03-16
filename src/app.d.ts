@@ -9,11 +9,10 @@ declare global {
 	}
 
 	type movie = {
-		id: number;
-		name: string;
-		year: number;
-		url: string;
-		description: string;
+		title: string;
+		character: string;
+		release_date: string;
+		poster_path: string | null;
 	};
 }
 
