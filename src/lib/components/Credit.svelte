@@ -1,58 +1,69 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	export let credit: credit;
-	const date_string = new Date(
-		credit.release_date
-	).toLocaleDateString();
-
+	const year = new Date(credit.release_date).getFullYear();
 	const image_base_url = "https://image.tmdb.org/t/p/w500";
+	let show_summary = false;
+	function toggle_summary() {
+		show_summary = !show_summary;
+	}
+	$: button_text = show_summary ? "Hide summary" : "Show summary";
 </script>
 
 <article>
-	<div class="content">
-		<h2>{credit.title}</h2>
-		<p class="date">{date_string}</p>
-		<p class="character">{credit.character}</p>
+	<div class="credit_data">
+		<h2 aria-label="title">{credit.title}</h2>
+		<p aria-label="year" class="year">{year}</p>
+		<p aria-label="character" class="character">
+			{credit.character}
+		</p>
 	</div>
 	{#if credit.poster_path}
-		<img
-			src={image_base_url + credit.poster_path}
-			alt="movie poster"
-		/>
+		<div class="container">
+			<div
+				class="summary"
+				class:show={show_summary}
+				transition:fade={{ duration: 200 }}
+			>
+				{credit.overview}
+			</div>
+			<img
+				src={image_base_url + credit.poster_path}
+				alt="movie poster for {credit.title}"
+			/>
+		</div>
+		<menu aria-hidden="true">
+			<button on:click={toggle_summary}>
+				{button_text}
+			</button>
+		</menu>
 	{:else}
-		<p class="no-poster">No poster</p>
+		<div class="summary">
+			{credit.overview}
+		</div>
 	{/if}
-	<div class="overview">
-		{credit.overview}
-	</div>
 </article>
 
-<style>
+<style lang="scss">
 	article {
 		background-color: #f4f4f4;
 		border-radius: 0.5rem;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
-		height: 100%;
-		padding-top: 1rem;
-		position: relative;
 	}
-	.content {
-		padding-inline: 1rem;
-		padding-bottom: 0.5rem;
+
+	.credit_data {
+		padding: 1rem 1rem 0.5rem 1rem;
 	}
-	h2 {
-		color: maroon;
-	}
+
 	img {
 		display: block;
 		width: 100%;
-		transform-origin: top;
-		transition: filter 100ms;
 	}
-	.date {
-		color: #444;
+
+	.year {
+		color: #666;
 	}
 
 	.character {
@@ -60,45 +71,41 @@
 		font-weight: bold;
 	}
 
-	img:hover {
-		filter: brightness(0.8);
-	}
-	.no-poster {
-		text-align: center;
-		font-style: italic;
+	.summary {
+		padding: 0.5rem 1rem;
+		overflow-y: auto;
 	}
 
-	.expand_button {
-		margin-top: auto;
+	.container {
+		position: relative;
+		overflow: hidden;
+
+		.summary {
+			position: absolute;
+			background-color: #f4f4f4c0;
+			backdrop-filter: blur(6px);
+			inset: 0;
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(50px);
+			transition: opacity 300ms ease-out,
+				transform 300ms ease-out;
+			&.show {
+				pointer-events: unset;
+				opacity: 1;
+				transform: translateY(0px);
+			}
+		}
 	}
 
-	.more {
-		position: absolute;
-		top: 100%;
-		z-index: 10;
-		background-color: white;
-		border: 0.1rem solid #777;
-		border-top-color: transparent;
-		padding: 0.5rem;
-		box-shadow: 0rem 0rem 1rem #0005;
-	}
-
-	.genres {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25rem;
-		font-size: 0.75rem;
-	}
-
-	.genre {
-		display: inline-block;
-		background-color: #555;
-		color: white;
-		padding: 0.2rem 0.4rem;
-		font-size: 0.75rem;
-	}
-	.overview {
-		font-size: 0.75rem;
+	menu {
 		padding-block: 0.5rem;
+		text-align: center;
+		margin-top: auto;
+
+		button {
+			font-size: smaller;
+			background-color: #888;
+		}
 	}
 </style>
