@@ -5,35 +5,7 @@
 		credit.release_date
 	).toLocaleDateString();
 
-	let expanded = false;
-	let movie: movie | null = null;
-
-	async function toggle_expand() {
-		if (expanded) {
-			expanded = false;
-			return;
-		}
-		if (movie) {
-			expanded = true;
-			return;
-		}
-
-		const res = await fetch("/api/details", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ movie_id: credit.id }),
-		});
-		if (res.ok) {
-			movie = await res.json();
-			expanded = true;
-		} else {
-			window.alert("Something went wrong.");
-		}
-	}
-
-	$: button_text = expanded ? "Collapse" : "Expand";
+	const image_base_url = "https://image.tmdb.org/t/p/w500";
 </script>
 
 <article>
@@ -43,32 +15,16 @@
 		<p class="character">{credit.character}</p>
 	</div>
 	{#if credit.poster_path}
-		<img src={credit.poster_path} alt="movie poster" />
+		<img
+			src={image_base_url + credit.poster_path}
+			alt="movie poster"
+		/>
 	{:else}
 		<p class="no-poster">No poster</p>
 	{/if}
-	<button class="expand_button" on:click={toggle_expand}>
-		{button_text}
-	</button>
-	{#if expanded && movie}
-		<div class="more" transition:fade={{ duration: 150 }}>
-			<div class="genres">
-				{#each movie.genres as genre}
-					<span class="genre">{genre.name}</span>
-				{/each}
-			</div>
-			<div class="overview">
-				{movie.overview}
-			</div>
-			<div>
-				<a
-					target="_blank"
-					href="https://www.imdb.com/title/{movie.imdb_id}"
-					>IMDB</a
-				>
-			</div>
-		</div>
-	{/if}
+	<div class="overview">
+		{credit.overview}
+	</div>
 </article>
 
 <style>

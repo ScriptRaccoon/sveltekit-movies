@@ -1,20 +1,17 @@
 <script lang="ts">
-	import { page } from "$app/stores";
 	import Credit from "$lib/components/Credit.svelte";
 	import type { PageData } from "./$types";
 
-	const { name } = $page.params;
-
 	export let data: PageData;
 
-	const { credits } = data;
+	const { credits, actor } = data;
 </script>
 
 <svelte:head>
 	<title>Movies - Search results</title>
 </svelte:head>
 
-<h1>Search results for: {name}</h1>
+<h1>Search results for: {actor.name}</h1>
 
 <ol>
 	{#each credits as credit}
