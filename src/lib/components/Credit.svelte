@@ -8,7 +8,7 @@
 	let expanded = false;
 	let movie: movie | null = null;
 
-	async function expand() {
+	async function toggle_expand() {
 		if (expanded) {
 			expanded = false;
 			return;
@@ -47,9 +47,9 @@
 	{:else}
 		<p class="no-poster">No poster</p>
 	{/if}
-	<button class="expand_button" on:click={expand}>
-		{button_text}</button
-	>
+	<button class="expand_button" on:click={toggle_expand}>
+		{button_text}
+	</button>
 	{#if expanded && movie}
 		<div class="more" transition:fade={{ duration: 150 }}>
 			<div class="genres">
