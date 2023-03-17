@@ -8,11 +8,19 @@ declare global {
 		// interface Platform {}
 	}
 
-	type movie = {
+	type credit = {
 		title: string;
 		character: string;
 		release_date: string;
 		poster_path: string | null;
+		id: number;
+	};
+
+	type movie = {
+		genres: { name: string }[];
+		id: number;
+		imdb_id: string | null;
+		overview: string;
 	};
 }
 

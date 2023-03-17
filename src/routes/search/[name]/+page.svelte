@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import Movie from "$lib/components/Movie.svelte";
+	import Credit from "$lib/components/Credit.svelte";
 	import type { PageData } from "./$types";
 
 	const { name } = $page.params;
 
 	export let data: PageData;
 
-	const { movies } = data;
+	const { credits } = data;
 </script>
 
 <svelte:head>
@@ -17,9 +17,9 @@
 <h1>Search results for: {name}</h1>
 
 <ol>
-	{#each movies as movie}
+	{#each credits as credit}
 		<li>
-			<Movie {movie} />
+			<Credit {credit} />
 		</li>
 	{/each}
 </ol>

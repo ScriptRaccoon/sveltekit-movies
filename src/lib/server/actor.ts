@@ -19,9 +19,9 @@ export async function get_actor_id(
 	}
 }
 
-export async function get_movies(
+export async function get_credits(
 	actor_id: string
-): Promise<movie[] | null> {
+): Promise<credit[] | null> {
 	const url =
 		`${PUBLIC_BASE_URL}/person/${actor_id}/movie_credits` +
 		`?api_key=${SECRET_API_KEY}`;
@@ -30,7 +30,7 @@ export async function get_movies(
 	if (res.ok) {
 		const data = await res.json();
 		const { cast } = data;
-		const movies = cast.slice(0, 9) as movie[];
+		const movies = cast.slice(0, 9) as credit[];
 		for (const m of movies) {
 			if (m.poster_path)
 				m.poster_path =
