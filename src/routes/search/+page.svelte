@@ -15,19 +15,20 @@
 <h1>Search</h1>
 
 <form on:submit|preventDefault={handle_submit}>
+	<label for="name_input"> Actor name </label>
+
+	<input type="text" id="name_input" bind:value={name} required />
 	<p>
-		<label
-			>Actor name
-			<input type="text" bind:value={name} />
-		</label>
-	</p>
-	<p>
-		<button>Search</button>
+		<button class="button">Search</button>
 	</p>
 </form>
 
 <style>
+	label {
+		display: block;
+		color: #666;
+	}
 	p {
-		margin-bottom: 0.5rem;
+		margin-block: 0.5rem;
 	}
 </style>

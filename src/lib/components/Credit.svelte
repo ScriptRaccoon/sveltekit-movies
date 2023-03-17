@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	export let credit: credit;
+
 	const year = new Date(credit.release_date).getFullYear();
 	const image_base_url = "https://image.tmdb.org/t/p/w500";
+	$: button_text = show_summary ? "Hide summary" : "Show summary";
+
 	let show_summary = false;
+
 	function toggle_summary() {
 		show_summary = !show_summary;
 	}
-	$: button_text = show_summary ? "Hide summary" : "Show summary";
 </script>
 
 <article>
@@ -19,6 +22,11 @@
 		</p>
 	</div>
 	{#if credit.poster_path}
+		<menu aria-hidden="true">
+			<button on:click={toggle_summary}>
+				{button_text}
+			</button>
+		</menu>
 		<div class="container">
 			<div
 				class="summary"
@@ -32,11 +40,6 @@
 				alt="movie poster for {credit.title}"
 			/>
 		</div>
-		<menu aria-hidden="true">
-			<button on:click={toggle_summary}>
-				{button_text}
-			</button>
-		</menu>
 	{:else}
 		<div class="summary">
 			{credit.overview}
@@ -79,6 +82,7 @@
 	.container {
 		position: relative;
 		overflow: hidden;
+		margin-top: auto;
 
 		.summary {
 			position: absolute;
@@ -99,13 +103,14 @@
 	}
 
 	menu {
-		padding-block: 0.5rem;
-		text-align: center;
-		margin-top: auto;
+		padding-inline: 0.5rem;
+		margin-bottom: 0.5rem;
 
 		button {
 			font-size: smaller;
-			background-color: #888;
+			background-color: transparent;
+			color: inherit;
+			text-decoration: underline;
 		}
 	}
 </style>

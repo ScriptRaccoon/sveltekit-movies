@@ -25,12 +25,17 @@ h2 {
 
 button {
 	font-family: inherit;
-	background-color: orangered;
-	color: white;
 	border: none;
 	padding: 0.2rem 0.4rem;
 	font-size: inherit;
 	cursor: pointer;
+	color: inherit;
+	background: none;
+}
+
+.button {
+	background-color: orangered;
+	color: white;
 }
 
 input {
