@@ -11,8 +11,8 @@
 
 <style>
 	main {
-		max-width: 38rem;
+		max-width: 52rem;
 		margin: 0 auto;
-		padding-inline: 0.5rem;
+		padding-inline: 1rem;
 	}
 </style>

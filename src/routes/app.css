@@ -7,8 +7,35 @@
 body {
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	line-height: 1.5;
+	color: #222;
 }
 
 a {
 	color: inherit;
+}
+
+h1 {
+	margin-block: 2rem;
+}
+
+h1,
+h2 {
+	line-height: 1.2;
+}
+
+button {
+	font-family: inherit;
+	background-color: orangered;
+	color: white;
+	border: none;
+	padding: 0.2rem 0.4rem;
+	font-size: inherit;
+	cursor: pointer;
+}
+
+input {
+	font-family: inherit;
+	padding: 0.4rem;
+	font-size: inherit;
+	border: 0.1rem solid #666;
 }

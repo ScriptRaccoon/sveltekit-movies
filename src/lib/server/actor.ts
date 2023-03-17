@@ -30,7 +30,7 @@ export async function get_movies(
 	if (res.ok) {
 		const data = await res.json();
 		const { cast } = data;
-		const movies = cast.slice(0, 10) as movie[];
+		const movies = cast.slice(0, 9) as movie[];
 		for (const m of movies) {
 			if (m.poster_path)
 				m.poster_path =

@@ -27,3 +27,12 @@
 		<button>Search</button>
 	</p>
 </form>
+
+<style>
+	form {
+		margin-block: 1rem;
+	}
+	form p {
+		margin-bottom: 0.5rem;
+	}
+</style>

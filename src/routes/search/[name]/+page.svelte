@@ -27,8 +27,8 @@
 <style>
 	ol {
 		list-style: none;
-	}
-	li {
-		margin-block: 1rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
 	}
 </style>
