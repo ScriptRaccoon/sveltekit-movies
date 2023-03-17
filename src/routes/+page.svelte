@@ -23,10 +23,6 @@
 </p>
 
 <style>
-	p {
-		margin-block: 1rem;
-	}
-
 	ul {
 		margin-left: 1.5rem;
 	}

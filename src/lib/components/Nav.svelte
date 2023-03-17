@@ -14,7 +14,7 @@
 		justify-content: center;
 		gap: 1rem;
 		padding: 1rem;
-		background-color: orangered;
+		background-color: var(--primary-color);
 		color: white;
 		font-size: 1.25rem;
 	}

@@ -26,8 +26,9 @@
 <style>
 	label {
 		display: block;
-		color: #666;
+		color: var(--light-color);
 	}
+
 	p {
 		margin-block: 0.5rem;
 	}

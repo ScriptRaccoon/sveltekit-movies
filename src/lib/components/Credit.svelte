@@ -22,7 +22,7 @@
 		</p>
 	</div>
 	{#if credit.poster_path}
-		<menu aria-hidden="true">
+		<menu aria-hidden="true" class:show={show_summary}>
 			<button on:click={toggle_summary}>
 				{button_text}
 			</button>
@@ -54,24 +54,28 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		overflow: hidden;
+		border: 0.1rem solid #ddd;
 	}
 
 	.credit_data {
 		padding: 1rem 1rem 0.5rem 1rem;
 	}
 
-	img {
-		display: block;
-		width: 100%;
-	}
-
 	.year {
-		color: #666;
+		color: var(--light-color);
+		font-size: 1.25rem;
 	}
 
 	.character {
 		font-style: italic;
 		font-weight: bold;
+		margin-top: 0.25rem;
+	}
+
+	img {
+		display: block;
+		width: 100%;
 	}
 
 	.summary {
@@ -87,30 +91,35 @@
 		.summary {
 			position: absolute;
 			background-color: #f4f4f4c0;
-			backdrop-filter: blur(6px);
 			inset: 0;
 			opacity: 0;
 			pointer-events: none;
-			transform: translateY(50px);
 			transition: opacity 300ms ease-out,
-				transform 300ms ease-out;
+				padding-top 300ms ease-out;
+			padding-top: 1.25rem;
+			backdrop-filter: blur(2px);
+
 			&.show {
-				pointer-events: unset;
+				pointer-events: initial;
 				opacity: 1;
-				transform: translateY(0px);
+				padding-top: 0.5rem;
 			}
 		}
 	}
 
 	menu {
-		padding-inline: 0.5rem;
+		padding-inline: 1rem;
 		margin-bottom: 0.5rem;
+		color: var(--light-color);
+		transition: color 300ms ease-out;
+
+		&.show {
+			color: initial;
+		}
 
 		button {
-			font-size: smaller;
-			background-color: transparent;
-			color: inherit;
 			text-decoration: underline;
+			text-underline-offset: 0.1rem;
 		}
 	}
 </style>

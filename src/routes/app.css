@@ -4,10 +4,16 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--primary-color: orangered;
+	--light-color: #666;
+	--font-color: #222;
+}
+
 body {
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	line-height: 1.5;
-	color: #222;
+	color: var(--font-color);
 }
 
 a {
@@ -15,7 +21,7 @@ a {
 }
 
 h1 {
-	margin-block: 2rem;
+	margin-bottom: 1rem;
 }
 
 h1,
@@ -26,15 +32,16 @@ h2 {
 button {
 	font-family: inherit;
 	border: none;
-	padding: 0.2rem 0.4rem;
 	font-size: inherit;
 	cursor: pointer;
 	color: inherit;
 	background: none;
+	padding: 0;
 }
 
 .button {
-	background-color: orangered;
+	padding: 0.2rem 0.4rem;
+	background-color: var(--primary-color);
 	color: white;
 }
 
@@ -42,5 +49,5 @@ input {
 	font-family: inherit;
 	padding: 0.4rem;
 	font-size: inherit;
-	border: 0.1rem solid #666;
+	border: 0.1rem solid var(--light-color);
 }
