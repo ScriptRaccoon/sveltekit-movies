@@ -11,9 +11,8 @@
 
 <style>
 	main {
-		max-width: 52rem;
+		max-width: 48rem;
 		margin: 0 auto;
 		padding: 1.5rem 1rem;
-		outline: 1px solid red;
 	}
 </style>
