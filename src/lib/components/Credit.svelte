@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	export let credit: credit;
+	export let show_imdb: boolean;
 
 	const year = new Date(credit.release_date).getFullYear();
 	const image_base_url = "https://image.tmdb.org/t/p/w500";
@@ -16,7 +17,9 @@
 <article>
 	<div class="credit_data">
 		<h2 aria-label="title">{credit.title}</h2>
-		<p aria-label="year" class="year">{year}</p>
+		<p aria-label="year" class="year">
+			{year}
+		</p>
 		<p aria-label="character" class="character">
 			{credit.character}
 		</p>
@@ -26,6 +29,13 @@
 			<button on:click={toggle_summary}>
 				{button_text}
 			</button>
+			{#if show_imdb && credit.imdb_id}
+				<a
+					class="imdb"
+					href="https://www.imdb.com/title/{credit.imdb_id}"
+					target="_blank">IMDB</a
+				>
+			{/if}
 		</menu>
 		<div class="container">
 			<div
@@ -43,6 +53,15 @@
 	{:else}
 		<div class="summary">
 			{credit.overview}
+		</div>
+		<div style="padding: 0.5rem">
+			{#if show_imdb && credit.imdb_id}
+				<a
+					class="imdb"
+					href="https://www.imdb.com/title/{credit.imdb_id}"
+					target="_blank">IMDB</a
+				>
+			{/if}
 		</div>
 	{/if}
 </article>
@@ -119,7 +138,17 @@
 
 		button {
 			text-decoration: underline;
-			text-underline-offset: 0.1rem;
 		}
+	}
+
+	.imdb {
+		color: var(--primary-color);
+		text-align: center;
+		padding-left: 0.5rem;
+	}
+
+	menu .imdb {
+		padding-left: unset;
+		float: right;
 	}
 </style>

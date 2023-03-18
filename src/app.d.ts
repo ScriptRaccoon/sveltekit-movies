@@ -21,6 +21,7 @@ declare global {
 		poster_path: string | null;
 		id: number;
 		overview: string;
+		imdb_id: string | null;
 	};
 }
 
