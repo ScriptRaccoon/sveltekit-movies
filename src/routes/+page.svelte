@@ -5,11 +5,16 @@
 <h1>Movies</h1>
 
 <p>
-	This is just a website which demonstrates some of SvelteKit's
-	features.
+	This is a movie website which demonstrates some of <a
+		href="https://kit.svelte.dev"
+		target="_blank">SvelteKit</a
+	>'s features:
 </p>
 
 <ul>
+	<li>Svelte components</li>
+	<li>pages</li>
+	<li>dynamic routes</li>
 	<li>layouts</li>
 	<li>page server loads</li>
 	<li>API endpoints</li>
@@ -24,6 +29,7 @@
 
 <style>
 	ul {
+		margin-block: 0.5rem;
 		margin-left: 1.5rem;
 	}
 </style>
