@@ -5,9 +5,11 @@ export async function get_actor(
 	search: string
 ): Promise<actor | null> {
 	const url =
-		`${PUBLIC_BASE_URL}/search/person` +
-		`?query=${search}&api_key=${SECRET_API_KEY}`;
+		`${PUBLIC_BASE_URL}/search/person?query=${search}` +
+		`&api_key=${SECRET_API_KEY}`;
+
 	const res = await fetch(url);
+
 	if (res.ok) {
 		const data = await res.json();
 		const { results } = data;
@@ -19,17 +21,19 @@ export async function get_actor(
 }
 
 export async function get_credits(
-	actor: actor
+	actor: actor,
+	amount: number = 9
 ): Promise<credit[] | null> {
 	const url =
 		`${PUBLIC_BASE_URL}/person/${actor.id}/movie_credits` +
 		`?api_key=${SECRET_API_KEY}`;
+
 	const res = await fetch(url);
 
 	if (res.ok) {
 		const data = await res.json();
 		const { cast } = data;
-		const movies = cast.slice(0, 9) as credit[];
+		const movies = cast.slice(0, amount) as credit[];
 		return movies;
 	} else {
 		return null;

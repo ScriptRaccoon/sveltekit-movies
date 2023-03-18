@@ -5,8 +5,8 @@
 
 	const year = new Date(credit.release_date).getFullYear();
 	const image_base_url = "https://image.tmdb.org/t/p/w500";
+	const imdb_base_url = "https://www.imdb.com/title";
 	$: button_text = show_summary ? "Hide summary" : "Show summary";
-
 	let show_summary = false;
 
 	function toggle_summary() {
@@ -15,7 +15,7 @@
 </script>
 
 <article>
-	<div class="credit_data">
+	<div class="data">
 		<h2 aria-label="title">{credit.title}</h2>
 		<p aria-label="year" class="year">
 			{year}
@@ -24,6 +24,7 @@
 			{credit.character}
 		</p>
 	</div>
+
 	{#if credit.poster_path}
 		<menu aria-hidden="true" class:show={show_summary}>
 			<button on:click={toggle_summary}>
@@ -32,11 +33,12 @@
 			{#if show_imdb && credit.imdb_id}
 				<a
 					class="imdb"
-					href="https://www.imdb.com/title/{credit.imdb_id}"
+					href="{imdb_base_url}/{credit.imdb_id}"
 					target="_blank">IMDB</a
 				>
 			{/if}
 		</menu>
+
 		<div class="container">
 			<div
 				class="summary"
@@ -53,14 +55,14 @@
 	{:else}
 		<div class="summary">
 			{credit.overview}
-		</div>
-		<div style="padding: 0.5rem">
 			{#if show_imdb && credit.imdb_id}
-				<a
-					class="imdb"
-					href="https://www.imdb.com/title/{credit.imdb_id}"
-					target="_blank">IMDB</a
-				>
+				<p>
+					<a
+						class="imdb"
+						href="https://www.imdb.com/title/{credit.imdb_id}"
+						target="_blank">IMDB</a
+					>
+				</p>
 			{/if}
 		</div>
 	{/if}
@@ -77,8 +79,8 @@
 		border: 0.1rem solid #ddd;
 	}
 
-	.credit_data {
-		padding: 1rem 1rem 0.5rem 1rem;
+	.data {
+		padding: 1rem;
 	}
 
 	.year {
@@ -89,12 +91,6 @@
 	.character {
 		font-style: italic;
 		font-weight: bold;
-		margin-top: 0.25rem;
-	}
-
-	img {
-		display: block;
-		width: 100%;
 	}
 
 	.summary {
@@ -104,8 +100,12 @@
 
 	.container {
 		position: relative;
-		overflow: hidden;
 		margin-top: auto;
+
+		img {
+			display: block;
+			width: 100%;
+		}
 
 		.summary {
 			position: absolute;
@@ -139,16 +139,13 @@
 		button {
 			text-decoration: underline;
 		}
+
+		.imdb {
+			float: right;
+		}
 	}
 
 	.imdb {
 		color: var(--primary-color);
-		text-align: center;
-		padding-left: 0.5rem;
-	}
-
-	menu .imdb {
-		padding-left: unset;
-		float: right;
 	}
 </style>

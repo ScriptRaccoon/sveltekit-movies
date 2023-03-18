@@ -15,9 +15,10 @@
 <h1>Search</h1>
 
 <form on:submit|preventDefault={handle_submit}>
-	<label for="name_input"> Actor name </label>
+	<label for="name_input">Actor name</label>
 
-	<input type="text" id="name_input" bind:value={name} required />
+	<input type="search" id="name_input" bind:value={name} required />
+
 	<p>
 		<button class="button">Search</button>
 	</p>

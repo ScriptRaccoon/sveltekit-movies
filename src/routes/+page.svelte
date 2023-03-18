@@ -5,10 +5,9 @@
 <h1>Movies</h1>
 
 <p>
-	This is a movie website which demonstrates some of <a
-		href="https://kit.svelte.dev"
-		target="_blank">SvelteKit</a
-	>'s features:
+	This is a movie website which demonstrates some of
+	<a href="https://kit.svelte.dev" target="_blank">SvelteKit</a>'s
+	features:
 </p>
 
 <ul>
@@ -18,13 +17,17 @@
 	<li>layouts</li>
 	<li>page server loads</li>
 	<li>API endpoints</li>
+	<li>Support for TypeScript and Sass</li>
 </ul>
 
 <p>
-	You can find the code at <a
+	You can find the code at
+	<a
 		href="https://github.com/ScriptRaccoon/sveltekit-movies"
-		target="_blank">GitHub</a
-	>.
+		target="_blank"
+	>
+		GitHub
+	</a>.
 </p>
 
 <style>

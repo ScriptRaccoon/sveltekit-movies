@@ -11,7 +11,6 @@ declare global {
 	type actor = {
 		id: number;
 		name: string;
-		profile_path: string | null;
 	};
 
 	type credit = {

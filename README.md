@@ -10,3 +10,4 @@ This is a movie website which demonstrates some of [SvelteKit](https://kit.svelt
 -   layouts
 -   page server loads
 -   API endpoints
+-   Support for TypeScript and Sass
